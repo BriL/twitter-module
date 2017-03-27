@@ -1,0 +1,116 @@
+<?php 
+
+/*
+ * Implements hook_menu()
+ */
+function trfs_social_media_menu(){
+  $items = array();
+
+  $items['admin/config/trfs/trfs-social-media/settings'] = array(
+    'title' => 'TRFS Social Media',
+    'description' => 'Settings page for the TRFS social media module.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('trfs_social_media_settings_form'),
+    'access arguments' => array('access trfs social media settings'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'includes/trfs_social_media.admin.inc'
+  );
+
+  return $items;
+}
+
+/*
+ * Implements hook_permission()
+ */
+function trfs_social_media_permission(){
+  return array(
+    'access trfs social media settings' => array(
+      'title' => t('access TRFS Social Media Settings Page'),
+    ),
+  );
+}
+
+/**
+ * Implement hook_theme();
+ */
+function trfs_social_media_theme(){
+  $theme_path = drupal_get_path('theme', 'rarefew');
+  $template_directory = $theme_path . '/templates/modules/trfs_social_media';
+
+  return array(
+    'twitter_feeds' => array(
+      'template' => '/trfs-social-media-twitter-feed',
+      'path' => $template_directory,
+      'variables' => array(
+        'node' => NULL,
+      ),
+    )
+  );
+}
+
+/**
+ * Funtion that uses a twitter proxy with OAuth key configuration saved in admin menu.
+ * 
+ * @return template
+ *  Returns themed output for the twitter feed
+ */
+function trfs_social_media_get_feed(){
+
+  $trfs_social_media_settings = variable_get('trfs_social_media_settings');
+
+  // Twitter OAuth Config options
+  $oauth_access_token_left = $trfs_social_media_settings['oauth_access_token_left'];
+  $oauth_access_token_secret_left = $trfs_social_media_settings['oauth_access_token_secret_left'];
+  $consumer_key_left = $trfs_social_media_settings['consumer_key_left'];
+  $consumer_secret_left = $trfs_social_media_settings['consumer_secret_left'];
+  $user_id_left = $trfs_social_media_settings['user_id_left'];
+  $screen_name_left = $trfs_social_media_settings['screen_name_left'];
+  $count_left = $trfs_social_media_settings['count_left']; // default is 5
+
+  // Twitter OAuth Config options
+  $oauth_access_token_right = $trfs_social_media_settings['oauth_access_token_right'];
+  $oauth_access_token_secret_right = $trfs_social_media_settings['oauth_access_token_secret_right'];
+  $consumer_key_right = $trfs_social_media_settings['consumer_key_right'];
+  $consumer_secret_right = $trfs_social_media_settings['consumer_secret_right'];
+  $user_id_right = $trfs_social_media_settings['user_id_right'];
+  $screen_name_right = $trfs_social_media_settings['screen_name_right'];
+  $count_right = $trfs_social_media_settings['count_right']; // default is 5
+
+  // Create a Twitter Proxy object from our trfsSocialMedia.class.inc class
+  $twitter_left = new trfsSocialMedia(
+    $oauth_access_token_left,
+    $oauth_access_token_secret_left,
+    $consumer_key_left,
+    $consumer_secret_left,
+    $user_id_left,
+    $screen_name_left,
+    $count_left
+  );
+
+  // Create a Twitter Proxy object from our trfsSocialMedia.class.inc class
+  $twitter_right = new trfsSocialMedia(
+    $oauth_access_token_right,
+    $oauth_access_token_secret_right,
+    $consumer_key_right,
+    $consumer_secret_right,
+    $user_id_right,
+    $screen_name_right,
+    $count_right
+  );
+
+  // Retrieve the data from twitter for both sides
+  $twitter_right->setUrlAndGo('feed');
+  $twitter_left->setUrlAndGo('feed');
+
+  // Theme the twitter feeds
+  $template = theme('twitter_feeds', array(
+      'twitter_feeds' => array(
+        'twitter_right' => $twitter_right,
+        'twitter_left' => $twitter_left,
+      )
+    )
+  );
+
+  return $template;
+
+}

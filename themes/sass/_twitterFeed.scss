@@ -1,0 +1,231 @@
+.trfs-twitter-container{
+  position: relative;
+  background-color: $trfs-twitter-blue;
+  margin: 20px 0px 20px 0px;
+  padding: 20px 0px 20px 0px;
+  @include breakpoint(md){
+    min-height: 95vh;
+  }
+  .trfs-container{
+    .twitter-left{
+      @include breakpoint(md){
+        border-right: 1px dotted $trfs-grey;
+      }
+    }
+    .twitter-user-info{
+      text-align: center;
+      margin-bottom: 30px;
+      .twitter-user-name{
+        margin-bottom: 15px;
+        font-family: Metrolox;
+        h2{
+          font-weight: bold;
+          margin: 10px 0px 0px 0px;
+        }
+        a {
+          color: black;
+          font-weight: bold;
+          &:hover{
+            text-decoration: none;
+          }
+        }
+      }
+      .twitter-user-description{
+        @include breakpoint(md){
+          overflow: hidden;
+          overflow-y: scroll;
+          max-height: 46px;
+        }
+        background-color: $trfs-white;
+        border: 1px solid $trfs-grey;
+        padding: 12px;
+        margin-bottom: 10px;
+        border-radius: 30px;
+        box-shadow: 0 1px 0 rgba(0,0,0,0.2), 0 1px 3px rgba(0,0,0,0.2), 0 4px 20px rgba(0,0,0,0.045), 0 1px 1px rgba(0,0,0,0.03);
+      }
+      .twitter-user-statuses{
+        .twitter-user-tweet{
+          font-family: Metrolox;
+          .twitter-tweet-label{
+
+          }
+          .twitter-status{
+            display: flex;
+            align-items: center;
+            margin: 0 auto;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: $trfs-white;
+            border: 5px double $trfs-grey;
+            box-shadow: 0 2px 0 rgba(0,0,0,0.2), 0 2px 4px rgba(0,0,0,0.2), 0 5px 25px rgba(0,0,0,0.045), 0 2px 2px rgba(0,0,0,0.03);
+            span{
+              width: 100%;
+              text-align: center;
+            }
+          }
+          .btn {
+            position: relative;
+            cursor: pointer;
+            padding: 0px 0px;
+            width: 60px;
+            height: 60px;
+            line-height: 140px;
+            background: #25292C;
+            margin: 0px auto;
+            text-align: center;
+            border-radius: 999px;
+            color: rgba(155,155,155,1);
+            text-shadow: -1px -1px 0px rgba(255,255,255,0.8), 1px 1px 2px rgba(0,0,0,1);
+            font-size: 14px;
+            font-family: sans-serif;
+            box-shadow: inset 1px 1px 2px rgba(255,255,255,0.3), 
+                        inset 3px 15px 45px rgba(255,255,255,0.1),
+                        inset -1px -1px 2px rgba(0,0,0,0.5), 
+                        inset -3px -15px 45px rgba(0,0,0,0.2),
+                        1px 5px 30px -4px rgba(0,0,0,1);
+            -webkit-transition: 0.1s ease-out;
+            -moz-transition:    0.1s ease-out;
+            -o-transition:      0.1s ease-out;
+            transition:         0.1s ease-out;
+            &:before {
+              content: "";
+              background: #1A1A1A;
+              width: 170px;
+              height: 170px;
+              position: absolute;
+              top: -15px;
+              left: -15px;
+              z-index: -1;
+              border-radius: 999px;
+              box-shadow: inset -1px -1px 2px rgba(255,255,255,0.3), 
+                inset -5px -15px 40px rgba(255,255,255,0.1),
+                inset 1px 1px 2px rgba(0,0,0,0.5), 
+                inset 5px 15px 40px rgba(0,0,0,0.2),
+                -2px -40px 50px -20px rgba(255,255,255,0.1),
+                2px 35px 50px -10px rgba(0,0,0,0.4),
+                0px 0px 25px 8px rgba(60,60,60,1);
+            }
+            &:active {
+              color: rgba(0,0,0,0.7);
+              text-shadow: 1px 1px 0px rgba(255,255,255,0.15);
+              box-shadow: inset 1px 1px 2px rgba(255,255,255,0.3), 
+                          inset 3px 15px 45px rgba(0,0,0,0.2),
+                          inset -1px -1px 2px rgba(0,0,0,0.5), 
+                          inset -3px -15px 45px rgba(255,255,255,0.1),
+                          1px 5px 10px -4px rgba(0,0,0,1);
+              }
+            }
+            .blob {
+              -webkit-animation: blob 1s linear;
+              -moz-animation:    blob 1s linear;
+              -o-animation:      blob 1s linear;
+              animation:         blob 1s linear;
+              color: rgba(0,00,0,0.7);
+              text-shadow: 1px 1px 0px rgba(255,255,255,0.15);
+              box-shadow: inset 1px 1px 2px rgba(255,255,255,0.3), 
+                          inset 3px 15px 45px rgba(0,0,0,0.2),
+                          inset -1px -1px 2px rgba(0,0,0,0.5), 
+                          inset -3px -15px 45px rgba(255,255,255,0.1),
+                          1px 5px 10px -4px rgba(0,0,0,1);
+              &:before {
+                -webkit-animation: blob 1s linear;
+                -moz-animation:    blob 1s linear;
+                -o-animation:      blob 1s linear;
+                animation:         blob 1s linear;
+              }
+
+              @-webkit-keyframes  { 
+              0%   { border-radius: 999px 999px; }
+              5%   { border-radius: 999px 200px; }
+              22%  { border-radius: 400px 999px; }
+              34%  { border-radius: 999px 700px; }
+              48%  { border-radius: 700px 999px; }
+              70%  { border-radius: 999px 999px; }
+              85%  { border-radius: 850px 999px; }
+              100% { border-radius: 999px 999px; }
+            }
+            @-moz-keyframes    { 
+              0%   { border-radius: 999px 999px; }
+              5%   { border-radius: 999px 200px; }
+              22%  { border-radius: 400px 999px; }
+              34%  { border-radius: 999px 700px; }
+              48%  { border-radius: 700px 999px; }
+              70%  { border-radius: 999px 999px; }
+              85%  { border-radius: 850px 999px; }
+              100% { border-radius: 999px 999px; } 
+            }
+            @-o-keyframes      { 
+              0%   { border-radius: 999px 999px; }
+              5%   { border-radius: 999px 200px; }
+              22%  { border-radius: 400px 999px; }
+              34%  { border-radius: 999px 700px; }
+              48%  { border-radius: 700px 999px; }
+              70%  { border-radius: 999px 999px; }
+              85%  { border-radius: 850px 999px; }
+              100% { border-radius: 999px 999px; }
+            }
+            @keyframes         { 
+              0%   { border-radius: 999px 999px; }
+              5%   { border-radius: 999px 200px; }
+              22%  { border-radius: 400px 999px; }
+              34%  { border-radius: 999px 700px; }
+              48%  { border-radius: 700px 999px; }
+              70%  { border-radius: 999px 999px; }
+              85%  { border-radius: 850px 999px; }
+              100% { border-radius: 999px 999px; }
+            }
+          }
+        }
+      }
+    }
+    .twitter-user-timeline{
+      display: none;
+      @include breakpoint(md){
+        display: block;
+      }
+      // Remove scroll bar from page
+      &::-webkit-scrollbar { 
+        display: none; 
+      }   
+      overflow-y:auto;
+      overflow-x:hidden;
+      max-height: calc(100vh / 2);
+      .twitter-tweet{
+        background-color: $trfs-white;
+        border: 1px solid $trfs-grey;
+        padding: 12px;
+        border-radius: 30px;
+        box-shadow: 0 1px 0 rgba(0,0,0,0.2), 0 1px 3px rgba(0,0,0,0.2), 0 4px 20px rgba(0,0,0,0.045), 0 1px 1px rgba(0,0,0,0.03);
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 10px;
+        font-size: 14px;
+        p{
+          margin-bottom: 5px;
+          &:last-child{
+            margin-bottom: 0px;
+          } 
+        }
+        .twitter-created-at{
+          font-style: italic;
+          a{
+            font-style: normal;
+            font-weight: bold;
+          }
+        }
+        .twitter-icon{
+          text-align: center;
+          padding-top: 5px;
+          a {
+            color: $trfs-grey;
+            &:hover{
+              color: $trfs-twitter-blue;
+              text-decoration: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}

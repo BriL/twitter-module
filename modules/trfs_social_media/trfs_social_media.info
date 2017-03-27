@@ -1,0 +1,7 @@
+name = TRFS Socila Media
+description = Brings in the feed from the user social media accout
+package = TRFS
+core = 7.x
+version = 7.x-0.1
+
+files[] = 'includes/trfsSocialMedia.class.inc'
