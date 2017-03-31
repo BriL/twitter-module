@@ -146,8 +146,8 @@ class trfsSocialMedia
         'token_secret'    => $this->config['oauth_access_token_secret']
       ]);
       $stack->push($middleware);
-
-      $client = new Client([
+      // Inilializing the guzzle client with the credentials saved in the configuration settings
+      $client = new GuzzleHttp\Client([
         'base_uri' => $this->config['base_url'],
         'handler' => $stack,
         'auth' => 'oauth'
@@ -155,7 +155,7 @@ class trfsSocialMedia
 
       // Now you don't need to add the auth parameter
       $result = $client->get($url);
-
+      // If error returns throw an exceptions and log
       if($result->getStatusCode() !== 200){
         Throw new RequestException('Guzzle encountered a ' . $result->getStatusCode() . ' Message: ' . $result->getReasonPhrase());
       }
@@ -276,10 +276,11 @@ class trfsSocialMedia
     $datetime1 = new DateTime();
     $datetime2 = date_create($raw_date);
     $time_count = 0;
-
+    // get the date difference between the two time intervals
     $interval = date_diff($datetime1, $datetime2);
     foreach ($interval as $key => $time_interval) {
       if ($key == 'y' || $key == 'm' || $key == 'd' || $key == 'h' || $key == 'i' || $key == 's'){
+        // loop through the time array and format the time to be shown in the template
         switch ($key) {
           case 'y':
             if ($time_interval && $time_count < 2){
@@ -329,7 +330,7 @@ class trfsSocialMedia
         }
       }
     }
-
+    // return the formated time string
     return $time_string;
     
   }
