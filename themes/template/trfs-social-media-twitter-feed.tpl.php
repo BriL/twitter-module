@@ -1,4 +1,7 @@
 <div class="trfs-twitter-container">
+  <div class="twitter-large-container">
+    <div class="twitter-large" data-parallax="scroll" data-image-src="<?php print file_create_url('public://twitter-large.png'); ?>"data-natural-width="445" data-natural-height="445" data-speed="0.3"></div>
+  </div>
   <div class="trfs-container container">
     <div class="row">
       <?php foreach ($twitter_feeds as $key => $twitter_feed): ?>
@@ -13,25 +16,25 @@
             </div>
             <div class="row twitter-user-statuses">
               <div class="col-xs-3 twitter-user-tweet">
-                <div class="twitter-tweet-label">Tweets</div>
+                <div class="twitter-label">Tweets</div>
                 <div class="twitter-status status-count<?php ($key == 'twitter_left') ? print '-right' : print '-left' ?>">
                   <span><?php print $twitter_feed->get_statuses_count(); ?></span>
                 </div>
               </div>
               <div class="col-xs-3 twitter-user-tweet">
-                <div class="twitter-follow-label">Following</div>
+                <div class="twitter-label">Following</div>
                 <div class="twitter-status">
                   <span><?php print $twitter_feed->get_friends_count(); ?></span>
                 </div>
               </div>
               <div class="col-xs-3 twitter-user-tweet">
-                <div class="twitter-follower-label">Followers</div>
+                <div class="twitter-label">Followers</div>
                 <div class="twitter-status">
                   <span><?php print $twitter_feed->get_followers_count(); ?></span>
                 </div>
               </div>
               <div class="col-xs-3 twitter-user-tweet">
-                <div class="twitter-likes-label">Likes</div>
+                <div class="twitter-label">Likes</div>
                 <div class="twitter-status">
                   <span><?php print $twitter_feed->get_favourites_count(); ?></span>
                 </div>
@@ -40,7 +43,8 @@
           </div>
           <div class="twitter-user-timeline">
             <?php foreach ($twitter_feed->get_twitter_feed() as $key => $tweet):?>
-              <div class="row twitter-tweet">
+             <div id="slide" class="fullwidth-slider" ></div>
+              <div class="row twitter-tweet data-parallax="scroll" data-image-src=""">
                 <div class="col-xs-12 twitter-created-at">
                   <p><a target='_blank' href='http://twitter.com/<?php print $twitter_feed->get_screen_name(); ?>'>@<?php print $twitter_feed->get_screen_name(); ?></a>&nbsp<?php print $tweet['created_at']; ?></p>
                 </div>

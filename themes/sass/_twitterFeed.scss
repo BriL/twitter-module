@@ -1,21 +1,35 @@
 .trfs-twitter-container{
-  position: relative;
-  background-color: $trfs-twitter-blue;
-  margin: 20px 0px 20px 0px;
-  padding: 20px 0px 20px 0px;
-  @include breakpoint(md){
-    min-height: 95vh;
-  }
-  .trfs-container{
-    .twitter-left{
-      @include breakpoint(md){
-        border-right: 1px dotted $trfs-grey;
+  .twitter-large-container{
+    .twitter-large{
+      @include breakpoint(xs){
+        top: -20%;
+        width:100%;
+        left: 0px;
+        min-height: 100vh;
       }
+      @include breakpoint(sm){
+        width:75%;
+        min-height: 100vh;
+        left: 15%;
+      }
+      @include breakpoint(md){
+        top: -3%;
+        min-height: 100vh;
+        left: 22%;
+        width:55%;
+        width: 55.5vw;
+      }  
+      position: absolute;
     }
+  }
+  position: relative;
+  margin: 20px 0px 20px 0px;
+  .trfs-container{
     .twitter-user-info{
       text-align: center;
       margin-bottom: 30px;
       .twitter-user-name{
+        color: $trfs-white;
         margin-bottom: 15px;
         font-family: Metrolox;
         h2{
@@ -23,7 +37,7 @@
           margin: 10px 0px 0px 0px;
         }
         a {
-          color: black;
+          color: $trfs-white;
           font-weight: bold;
           &:hover{
             text-decoration: none;
@@ -46,8 +60,8 @@
       .twitter-user-statuses{
         .twitter-user-tweet{
           font-family: Metrolox;
-          .twitter-tweet-label{
-
+          .twitter-label{
+            color: $trfs-white;
           }
           .twitter-status{
             display: flex;
@@ -91,11 +105,10 @@
             &:before {
               content: "";
               background: #1A1A1A;
-              width: 170px;
-              height: 170px;
+              width: 60px;
+              height: 60px;
               position: absolute;
-              top: -15px;
-              left: -15px;
+              left: -4px;
               z-index: -1;
               border-radius: 999px;
               box-shadow: inset -1px -1px 2px rgba(255,255,255,0.3), 
@@ -210,8 +223,10 @@
         .twitter-created-at{
           font-style: italic;
           a{
+            color: $trfs-twitter-blue;
             font-style: normal;
             font-weight: bold;
+            text-decoration: none;
           }
         }
         .twitter-icon{
@@ -219,7 +234,7 @@
           padding-top: 5px;
           a {
             color: $trfs-grey;
-            &:hover{
+            &:hover, &:focus{
               color: $trfs-twitter-blue;
               text-decoration: none;
             }
